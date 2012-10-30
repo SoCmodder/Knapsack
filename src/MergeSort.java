@@ -10,6 +10,7 @@ import java.util.List;
 public class MergeSort {
     Item item;
     List<Integer> temp = new ArrayList<Integer>();
+    List<Integer> tempWeight = new ArrayList<Integer>();
     private int size;
 
     /**
@@ -50,7 +51,7 @@ public class MergeSort {
     /**
      * Function: merge
      * Description: Takes in 3 values as input and then uses those values to decide which
-     *               sub arrays will be merged into which part of the overall array. The final result
+     *      sub arrays will be merged into which part of the overall array. The final result
      *      of which is the sorted array returned by the sort function.
      * @param low
      * @param mid
@@ -59,6 +60,7 @@ public class MergeSort {
     private void merge(int low, int mid, int high){
         for(int i=low; i<=high; i++){
             temp.add(item.prizes.get(i));
+            tempWeight.add(item.weights.get(i));
         }
 
         int i=low;
@@ -66,18 +68,21 @@ public class MergeSort {
         int k=low;
 
         while(i <= mid && j <= high){
-            if(temp.get(i) <= temp.get(j)){
+            if(temp.get(i)/tempWeight.get(i) <= temp.get(j)/tempWeight.get(j)){
                 item.prizes.set(k, temp.get(i));
+                item.weights.set(k, tempWeight.get(i));
                 i++;
             }
             else{
                 item.prizes.set(k, temp.get(j));
+                item.weights.set(k, tempWeight.get(j));
                 j++;
             }
             k++;
         }
         while(i <= mid){
             item.prizes.set(k, temp.get(i));
+            item.weights.set(k, tempWeight.get(i));
             k++;
             i++;
         }

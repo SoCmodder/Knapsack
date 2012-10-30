@@ -6,4 +6,20 @@
  */
 public class IterIntKnapsack {
 
+    public Item knapsack(Item item){
+
+        return item;
+    }
+
+    public void worst(){
+
+    }
+
+    public void best(){
+
+    }
+
+    public void average(){
+
+    }
 }
